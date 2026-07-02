@@ -1,0 +1,1 @@
+(function(){"use strict";(function(t){var n;t.ChatSDK=t.ChatSDK||{q:[]};const e=function(s,...a){t.ChatSDK&&t.ChatSDK.q&&t.ChatSDK.q.push([s,...a])};e.q=t.ChatSDK.q||[],t.ChatSDK=e;const c=document.createElement("script");c.src=((n=document.currentScript)==null?void 0:n.src.replace("loader.js","widget.js"))||"widget.js",c.async=!0,document.head.appendChild(c)})(window)})();

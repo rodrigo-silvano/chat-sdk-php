@@ -1,71 +1,71 @@
-# Chat SDK PHP — Guia de Instalação em Alojamento Partilhado cPanel
+# Chat SDK PHP — cPanel Shared Hosting Installation Guide
 
-Este guia detalha o processo passo-a-passo para instalar o Chat SDK PHP num servidor com alojamento partilhado gerido via cPanel. O Chat SDK PHP foi concebido em PHP 8 puro, sem recurso a frameworks, Composer ou Docker, facilitando a sua execução em ambientes de alojamento tradicionais.
-
----
-
-## Requisitos do Servidor
-* PHP 8.0 ou superior
-* Extensão PDO MySQL ativada no PHP
-* Servidor Web Apache com suporte para ficheiros `.htaccess` e módulo `mod_rewrite` ativo
+This guide details the step-by-step process to install Chat SDK PHP on a shared hosting server managed via cPanel. Chat SDK PHP is designed in pure PHP 8, without using frameworks, Composer, or Docker, making it easy to run in traditional hosting environments.
 
 ---
 
-## Passo 1: Configurar a Base de Dados no cPanel
-Como os ambientes de alojamento partilhado restringem a criação direta de bases de dados via scripts PHP, deve criar a base de dados previamente através do cPanel:
-
-1. Aceda ao painel do seu cPanel.
-2. Na secção **Bases de Dados**, clique em **Bases de Dados MySQL** (MySQL Databases).
-3. Em **Criar Nova Base de Dados**, introduza o nome desejado (por exemplo, `meusite_chat`) e clique em **Criar Base de Dados**.
-4. Em **Utilizadores MySQL -> Adicionar Novo Utilizador**, introduza um nome de utilizador (por exemplo, `meusite_chatuser`), gere uma palavra-passe segura e guarde-a. Clique em **Criar Utilizador**.
-5. Em **Adicionar Utilizador à Base de Dados**, selecione o utilizador e a base de dados criados e clique em **Adicionar**.
-6. Na janela de privilégios, selecione a opção **Todos os Privilégios** (ALL PRIVILEGES) e clique em **Fazer Alterações**.
+## Server Requirements
+* PHP 8.0 or higher
+* PDO MySQL extension enabled in PHP
+* Apache Web Server with support for `.htaccess` files and `mod_rewrite` module enabled
 
 ---
 
-## Passo 2: Upload dos Ficheiros do Projeto
-1. Comprima todos os ficheiros da pasta do projeto `chat-sdk-php` num ficheiro ZIP (excluindo pastas locais de controlo de versão como `.git`, se desejar).
-2. Aceda ao cPanel e clique em **Gestor de Ficheiros** (File Manager).
-3. Navegue até à pasta pretendida onde deseja alojar o chat (por exemplo, a pasta raiz `public_html`, ou crie uma subpasta como `/public_html/chat/`).
-4. Clique em **Carregar** (Upload), selecione o ficheiro ZIP e aguarde a conclusão.
-5. Extraia o conteúdo do ficheiro ZIP na pasta de destino utilizando a ferramenta **Extrair** (Extract) do cPanel.
+## Step 1: Configure the Database in cPanel
+Since shared hosting environments restrict direct database creation via PHP scripts, you must create the database beforehand through cPanel:
+
+1. Access your cPanel panel.
+2. In the **Databases** section, click on **MySQL Databases**.
+3. Under **Create New Database**, enter the desired name (e.g., `mysite_chat`) and click **Create Database**.
+4. Under **MySQL Users -> Add New User**, enter a username (e.g., `mysite_chatuser`), generate a secure password and save it. Click **Create User**.
+5. Under **Add User to Database**, select the created user and database and click **Add**.
+6. On the privileges page, select the **ALL PRIVILEGES** option and click **Make Changes**.
 
 ---
 
-## Passo 3: Executar o Assistente de Instalação (Wizard)
-1. Abra o seu browser e aceda ao endereço correspondente à pasta onde extraiu o projeto com o sufixo `/install/` (por exemplo: `https://o-seu-dominio.com/chat/install/`).
-2. **Passo 1 — Base de Dados:**
-   * **Servidor MySQL (Host):** Introduza o endereço do servidor (geralmente `localhost`).
-   * **Nome da Base de Dados:** Introduza o nome completo da base de dados criada no cPanel (ex: `nomeusuario_chat`).
-   * **Utilizador MySQL:** Introduza o nome completo do utilizador criado no cPanel (ex: `nomeusuario_chatuser`).
-   * **Password MySQL:** Introduza a palavra-passe que definiu para o utilizador MySQL.
-   * Clique em **Ligar e Configurar**. O instalador criará as tabelas da base de dados.
-3. **Passo 2 — Administrador:**
-   * **Nome do Administrador:** Defina o nome do operador principal (ex: `Admin`).
-   * **Email do Administrador:** Introduza o e-mail de acesso para o painel de administração.
-   * **Password do Administrador:** Defina uma palavra-passe de acesso segura (mínimo de 8 caracteres).
-   * **Confirmar Password:** Confirme a palavra-passe introduzida.
-   * **Instalar dados de teste (Seeding):** Ative esta opção caso pretenda testar a aplicação imediatamente com configurações padrão e conversas de demonstração na base de dados.
-   * Clique em **Finalizar Instalação**. O instalador gerará os ficheiros de configuração `config/database.php` e `config/app.php` com chaves de encriptação e tokens JWT gerados aleatoriamente de forma segura.
+## Step 2: Upload Project Files
+1. Compress all files in the `chat-sdk-php` project folder into a ZIP file (excluding local version control folders like `.git` if you wish).
+2. Access cPanel and click on **File Manager**.
+3. Navigate to the desired folder where you want to host the chat (e.g., the root folder `public_html`, or create a subfolder like `/public_html/chat/`).
+4. Click **Upload**, select the ZIP file and wait for completion.
+5. Extract the ZIP file contents in the target folder using the **Extract** tool in cPanel.
 
 ---
 
-## Passo 4: Limpeza e Segurança Pós-Instalação
-Após visualizar a mensagem de instalação concluída com sucesso, execute as seguintes ações de segurança:
-
-1. Aceda ao **Gestor de Ficheiros** do cPanel.
-2. Navegue até ao diretório de instalação do chat.
-3. **Elimine permanentemente a pasta `install/`** para evitar que terceiros possam reiniciar o assistente ou aceder a ficheiros confidenciais.
+## Step 3: Run the Installation Wizard
+1. Open your browser and navigate to the address corresponding to the folder where you extracted the project with the `/install/` suffix (e.g., `https://your-domain.com/chat/install/`).
+2. **Step 1 — Database:**
+   * **MySQL Server (Host):** Enter the server address (usually `localhost`).
+   * **Database Name:** Enter the full name of the database created in cPanel (e.g., `username_chat`).
+   * **MySQL User:** Enter the full name of the MySQL user created in cPanel (e.g., `username_chatuser`).
+   * **MySQL Password:** Enter the password you set for the MySQL user.
+   * Click **Connect and Configure**. The installer will create the database tables.
+3. **Step 2 — Administrator:**
+   * **Administrator Name:** Set the primary operator name (e.g., `Admin`).
+   * **Administrator Email:** Enter the login email for the admin panel.
+   * **Administrator Password:** Set a secure login password (minimum of 8 characters).
+   * **Confirm Password:** Confirm the password entered.
+   * **Install sample data (Seeding):** Enable this option if you want to test the application immediately with default settings and demo conversations in the database.
+   * Click **Finish Installation**. The installer will generate the configuration files `config/database.php` and `config/app.php` with randomly generated secure encryption keys and JWT tokens.
 
 ---
 
-## Passo 5: Integração do Widget no Seu Site Cliente
-Para ativar o widget de chat em qualquer página do seu website:
+## Step 4: Post-Installation Cleanup and Security
+After seeing the installation completed successfully message, perform the following security actions:
 
-1. Adicione a seguinte linha de código HTML mesmo antes da tag de fecho `</body>` das suas páginas:
+1. Access the cPanel **File Manager**.
+2. Navigate to the chat installation directory.
+3. **Permanently delete the `install/` folder** to prevent third parties from restarting the wizard or accessing sensitive files.
+
+---
+
+## Step 5: Integrate the Widget into Your Client Site
+To enable the chat widget on any page of your website:
+
+1. Add the following line of HTML code right before the closing `</body>` tag on your pages:
    ```html
-   <script src="https://o-seu-dominio.com/chat/widget/loader.js" async></script>
+   <script src="https://your-domain.com/chat/widget/loader.js" async></script>
    ```
-   *(Substitua `https://o-seu-dominio.com/chat/` pelo URL absoluto onde instalou o Chat SDK PHP)*
+   *(Replace `https://your-domain.com/chat/` with the absolute URL where you installed Chat SDK PHP)*
 
-2. O script `loader.js` encarrega-se de detetar e carregar de forma dinâmica e assíncrona o widget principal (`widget.js`), garantindo que o carregamento da sua página web não é afetado.
+2. The `loader.js` script handles detecting and dynamically/asynchronously loading the main widget (`widget.js`), ensuring your web page load speed is not affected.

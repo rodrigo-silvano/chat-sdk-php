@@ -69,3 +69,7 @@ To enable the chat widget on any page of your website:
    *(Replace `https://your-domain.com/chat/` with the absolute URL where you installed Chat SDK PHP)*
 
 2. The `loader.js` script handles detecting and dynamically/asynchronously loading the main widget (`widget.js`), ensuring your web page load speed is not affected.
+
+## Author
+
+Created and maintained by [Rodrigo Silvano](https://rodrigosilvano.pt).
